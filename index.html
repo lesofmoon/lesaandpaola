@@ -182,7 +182,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -192,11 +191,21 @@ document.addEventListener("DOMContentLoaded", function () {
     const overlay = document.getElementById("passwordOverlay");
     const flashScreen = document.getElementById("flashScreen");
 
+    // ✅ If already unlocked during this session, hide overlay immediately
+    if (sessionStorage.getItem("siteUnlocked") === "true") {
+        overlay.style.display = "none";
+        return;
+    }
+
     passwordInput.focus();
 
     passwordInput.addEventListener("input", function () {
         if (passwordInput.value.length === 8) {
+
             if (passwordInput.value === correctPassword) {
+
+                // ✅ Save unlock status for this session
+                sessionStorage.setItem("siteUnlocked", "true");
 
                 // Trigger white flash
                 flashScreen.classList.add("flash-active");
@@ -218,6 +227,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 </script>
+
 
 
 
