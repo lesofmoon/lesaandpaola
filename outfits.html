@@ -266,9 +266,13 @@
             const target = tab.dataset.target;
             document.getElementById(`carousel-${target}`).style.display = 'block';
             
-            // Recalculate height because hidden elements have 0 height
-            // Small timeout allows display:block to render first
-            setTimeout(() => updateHeight(target), 50);
+            
+            setTimeout(() => {
+            updateHeight(target);
+            // This forces the browser to recalculate the layout, 
+            // making sure arrows appear correctly on mobile
+            window.dispatchEvent(new Event('resize')); 
+        }, 50);
         });
     });
 
