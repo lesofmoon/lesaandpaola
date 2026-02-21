@@ -272,30 +272,37 @@
         });
     });
 
-    // Swipe Support
+    
+    // --- Improved Swipe Support ---
     let touchStartX = 0;
-    let touchEndX = 0;
+    let touchStartY = 0; 
 
     genders.forEach(gender => {
-        const id = `track-${gender}`;
-        const el = document.getElementById(id);
+        const el = document.getElementById(`track-${gender}`);
         if (!el) return;
 
         el.addEventListener('touchstart', e => {
             touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
         }, {passive: true});
 
         el.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe(gender);
+            const touchEndX = e.changedTouches[0].screenX;
+            const touchEndY = e.changedTouches[0].screenY;
+            
+            const deltaX = touchEndX - touchStartX;
+            const deltaY = touchEndY - touchStartY;
+
+            // Threshold: 50px movement, and check if swipe was horizontal rather than vertical
+            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+                if (deltaX < 0) {
+                    nextSlide(gender, 1);
+                } else {
+                    nextSlide(gender, -1);
+                }
+            }
         }, {passive: true});
     });
-
-    function handleSwipe(gender) {
-        const swipeThreshold = 50;
-        if (touchEndX < touchStartX - swipeThreshold) nextSlide(gender, 1);
-        if (touchEndX > touchStartX + swipeThreshold) nextSlide(gender, -1);
-    }
 
     // Initialize on Load
     window.addEventListener('load', () => {
