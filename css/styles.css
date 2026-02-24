@@ -615,7 +615,6 @@ h6 {
 
 
 
-
 /* Scroll To Top Button */
 #scrollTopBtn {
   position: fixed;
@@ -640,8 +639,6 @@ h6 {
   z-index: 999;
 }
 
-
-
 /* Show Button */
 #scrollTopBtn.show {
   opacity: 1;
@@ -665,6 +662,7 @@ h6 {
     right: 20px; /* updated */
   }
 }
+
 
 
 
