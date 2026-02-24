@@ -14,6 +14,12 @@
 
 <body class="page-bg">
 
+<!-- Scroll To Top Button -->
+<button id="scrollTopBtn" aria-label="Scroll to top">
+    ↑
+</button>
+    
+
     <div class="container contained py-4">
         <!-- Header -->
         <div class="d-flex justify-content-between align-items-center mb-5">
@@ -159,5 +165,28 @@
         }
     </style>
 </body>
+
+
+
+<script>
+  const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+  // Show button when scrolling
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      scrollTopBtn.classList.add("show");
+    } else {
+      scrollTopBtn.classList.remove("show");
+    }
+  });
+
+  // Smooth scroll to top
+  scrollTopBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+</script>
 
 </html>
