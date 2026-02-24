@@ -76,7 +76,6 @@
 <script>
   const scrollTopBtn = document.getElementById("scrollTopBtn");
 
-  // Show button when scrolling
   window.addEventListener("scroll", () => {
     if (window.scrollY > 300) {
       scrollTopBtn.classList.add("show");
@@ -85,13 +84,15 @@
     }
   });
 
-  // Smooth scroll to top
-  scrollTopBtn.addEventListener("click", () => {
+  // Use pointerdown instead of click (fixes mobile double tap issue)
+  scrollTopBtn.addEventListener("pointerdown", (e) => {
+    e.preventDefault();
     window.scrollTo({
       top: 0,
       behavior: "smooth"
     });
   });
 </script>
+
 
 </html>
