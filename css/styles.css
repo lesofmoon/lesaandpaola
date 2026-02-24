@@ -616,5 +616,58 @@ h6 {
 
 
 
+/* Scroll To Top Button */
+#scrollTopBtn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px; /* changed from left to right */
+  width: 55px;
+  height: 55px;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(132, 162, 7, 0.75);
+  color: #1a1a1a;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+/* Show Button */
+#scrollTopBtn.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Hover */
+#scrollTopBtn:hover {
+  background-color: rgba(132, 162, 7, 0.95);
+  transform: translateY(-3px);
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  #scrollTopBtn {
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+    bottom: 20px;
+    right: 20px; /* updated */
+  }
+}
+
+
+
+
+
+
 
 
